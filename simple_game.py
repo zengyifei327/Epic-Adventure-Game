@@ -38,6 +38,24 @@ def print_game_intro():
     print("Let the journey begin!\n")
 
 
+def get_map_size_from_user():
+    """
+    Prompt the user to enter the size of the map (rows and columns).
+
+    :return: A tuple containing the number of rows and columns entered by the user
+    """
+    while True:
+        try:
+            rows = int(input("Enter the number of rows for the map: "))
+            columns = int(input("Enter the number of columns for the map: "))
+            if rows > 0 and columns > 0:
+                return rows, columns
+            else:
+                print("Please enter positive integers for rows and columns.")
+        except ValueError:
+            print("Invalid input. Please enter integers for rows and columns.")
+
+
 def make_board(rows, columns):
     """
     Make a game board with specific rows and columns.
@@ -325,8 +343,7 @@ def game():
     Run the game.
     """
     print_game_intro()
-    rows = 3
-    columns = 3
+    rows, columns = get_map_size_from_user()
     board = make_board(rows, columns)
     character = make_character()
     achieved_goal = False
@@ -355,6 +372,7 @@ def game():
 
         else:
             print('You cannot go to that direction! Please choose again.')
+            print_map(board, character)
 
     if user_alive:
         print('Congratulation! You won!!~♪ · ＼_(^◇^)_／＼(*^^*)／')
