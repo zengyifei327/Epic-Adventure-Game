@@ -5,6 +5,39 @@
 import random
 
 
+def print_game_intro():
+    """
+    Print the introduction for the Epic Adventure game.
+
+    The function displays an ASCII art title followed by an introduction
+    to the game, explaining the player's journey and objectives.
+    """
+    print(r"""
+ _____ ____ ___ ____                                      
+| ____|  _ \_ _/ ___|                                     
+|  _| | |_) | | |                                         
+| |___|  __/| | |___                                      
+|_____|_|__|___\____|______ _   _ _____ _   _ ____  _____ 
+   / \  |  _ \ \   / / ____| \ | |_   _| | | |  _ \| ____|
+  / _ \ | | | \ \ / /|  _| |  \| | | | | | | | |_) |  _|  
+ / ___ \| |_| |\ V / | |___| |\  | | | | |_| |  _ <| |___ 
+/_/   \_\____/  \_/  |_____|_| \_| |_|  \___/|_| \_\_____|
+    """)
+
+    print("Welcome to Epic Adventure!")
+    print("In this game, you will embark on an epic journey through mystical lands and treacherous dungeons.")
+    print("You will encounter formidable foes, cunning puzzles, and hidden treasures along the way.")
+    print("Your quest is to conquer the challenges and emerge victorious as the ultimate hero.")
+    print("Prepare yourself for an unforgettable adventure!")
+    print("To play the game, follow these instructions:")
+    print("1. Enter the size of the map (rows and columns) when prompted.")
+    print("2. Navigate through the rooms to reach the bottom right corner.")
+    print("3. Beware of challenges and obstacles along the way.")
+    print("4. Keep an eye on your character's health (HP) to survive.")
+    print("5. Reach the destination while staying alive to win the game!")
+    print("Let the journey begin!\n")
+
+
 def make_board(rows, columns):
     """
     Make a game board with specific rows and columns.
@@ -291,6 +324,7 @@ def game():
     """
     Run the game.
     """
+    print_game_intro()
     rows = 3
     columns = 3
     board = make_board(rows, columns)
