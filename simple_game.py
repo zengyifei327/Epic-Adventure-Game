@@ -38,6 +38,37 @@ def make_character():
     return {'X-coordinate': 0, 'Y-coordinate': 0, 'Current HP': 5}
 
 
+def print_map(board, character):
+    """
+    Print a map based on the provided game board, showing the character's position with an 'X' in red.
+
+    :param board: a dictionary representing the game board
+    :param character: a dictionary representing the character with 'X-coordinate', 'Y-coordinate',
+                      and 'Current HP' keys
+    :precondition: board must be a dictionary where keys are tuples representing coordinates,
+                   and values are strings representing room contents
+    :precondition: character must be a dictionary containing the keys 'X-coordinate', 'Y-coordinate',
+                   and 'Current HP', representing the character's coordinates and current HP
+    :postcondition: print a map representing the game board to the console with the character's position marked with 'X'
+    """
+    max_row = max(coord[0] for coord in board.keys())
+    max_col = max(coord[1] for coord in board.keys())
+
+    col_widths = {col: max(len(str(board.get((row, col), ""))) for row in range(max_row + 1)) for col in
+                  range(max_col + 1)}
+
+    print("+" + "+".join("-" * (col_widths[col] + 2) for col in range(max_col + 1)) + "+")
+
+    for row in range(max_row + 1):
+        for col in range(max_col + 1):
+            if (row, col) == (character['Y-coordinate'], character['X-coordinate']):
+                print(f"|     😀     ".center(col_widths[col]), end="")
+            else:
+                print(f"| {board.get((row, col), 'Empty room'):{col_widths[col]}} ", end="")
+        print("|")
+        print("+" + "+".join("-" * (col_widths[col] + 2) for col in range(max_col + 1)) + "+")
+
+
 def describe_current_location(board, character):
     """
     Print user's current location, HP and destination.
@@ -266,7 +297,7 @@ def game():
     character = make_character()
     achieved_goal = False
     user_alive = True
-    # Tell the user where they are
+    print_map(board, character)
     describe_current_location(board, character)
 
     while user_alive and not achieved_goal:
@@ -275,6 +306,7 @@ def game():
 
         if valid_move:
             move_character(character, direction)
+            print_map(board, character)
             describe_current_location(board, character)
             there_is_a_challenger = check_for_foes()
 
