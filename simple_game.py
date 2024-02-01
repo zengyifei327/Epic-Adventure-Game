@@ -1,7 +1,7 @@
-"""
-Yifei Zeng
-A01375821
-"""
+# This Python script implements a text-based adventure game where the player navigates through
+# a game board filled with different rooms. The player character can move in four directions
+# (up, down, left, right) and encounters challenges along the way, such as guessing games.
+# The goal of the game is to reach the bottom right corner of the board while staying alive.
 import random
 
 
@@ -256,7 +256,7 @@ def check_if_goal_attained(board, character):
         return False
 
 
-def game():  # called from main
+def game():
     """
     Run the game.
     """
